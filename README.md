@@ -1,2 +1,3 @@
 # WeChatDemo
-Wechat
+
+设计一个Wechat
