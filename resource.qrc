@@ -2,4 +2,7 @@
     <qresource prefix="/img">
         <file>icon/wechat-logo.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>style/stylesheet.qss</file>
+    </qresource>
 </RCC>
