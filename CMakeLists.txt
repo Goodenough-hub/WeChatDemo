@@ -28,6 +28,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         registerdialog.h registerdialog.cpp registerdialog.ui
         global.h
         global.cpp
+        singleton.h
+        httpmgr.h httpmgr.cpp
 
 
     )
@@ -48,6 +50,9 @@ else()
         )
     endif()
 endif()
+
+find_package(Qt6 REQUIRED COMPONENTS Network)
+target_link_libraries(Wechat PRIVATE Qt6::Network)
 
 target_link_libraries(Wechat PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
