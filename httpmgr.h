@@ -14,11 +14,11 @@ class HttpMgr:public QObject, public Singleton<HttpMgr>, public std::enable_shar
     Q_OBJECT // 使用QT的元对象系统
 public:
     ~HttpMgr();
+    void PostHttpReq(QUrl url, QJsonObject json, ReqID req_id, Modules mod);
 private:
     friend class Singleton<HttpMgr>;
     HttpMgr();
     QNetworkAccessManager _manager;
-    void PostHttpReq(QUrl url, QJsonObject json, ReqID req_id, Modules mod);
 
 private slots: // 私有的槽函数，仅供自己使用
     void slot_http_finish(ReqID id, QString res, ErrorCodes err, Modules mod);

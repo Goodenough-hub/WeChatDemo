@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         global.cpp
         singleton.h
         httpmgr.h httpmgr.cpp
+        config.ini
 
 
     )
@@ -80,3 +81,19 @@ install(TARGETS Wechat
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Wechat)
 endif()
+
+# 设置源文件路径
+set(SOURCE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/config.ini")
+
+# 设置目标文件路径
+set(TARGET_FILE "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/config.ini")
+
+# 复制文件
+configure_file(${SOURCE_FILE} ${TARGET_FILE} COPYONLY)
+
+# 添加自定义命令
+add_custom_command(
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TARGET_FILE} $<TARGET_FILE_DIR:${PROJECT_NAME}>
+)
+

@@ -33,8 +33,13 @@ void RegisterDialog::on_get_code_clicked()
     bool match = regex.match(email).hasMatch();
     if(match)
     {
-        // 发送验证码
-        showTip(tr("正在向邮箱发送验证码...\n请注意查收！"), true);
+        // 发送http验证码
+        //showTip(tr("正在向邮箱发送验证码...\n请注意查收！"), true);
+        QJsonObject json_obj;
+        json_obj["email"] = email;
+        // qDebug() << gate_url_prefix;
+        HttpMgr::GetInstance()->PostHttpReq(QUrl(gate_url_prefix + "/get_varifycode"),
+                                            json_obj, ReqID::ID_GET_VARIFY_CODE, Modules::REGISTERMOD);
     }
     else
     {
